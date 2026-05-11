@@ -3,19 +3,15 @@
 ### 👥 Nhóm thực hiện:
 | MSSV | Họ và Tên |
 |------|-----------|
-| 23110285 | NGUYỄN THUẬN PHÚ |
 | 23110296 | VŨ ANH QUỐC |
-| 23110359 | VÕ VĂN TÚ |
 
 Dự án API backend cho hệ thống E-Learning, tập trung vào bảo mật API và kiến trúc mã nguồn chuẩn.
 
 ## 🚀 Tính năng nổi bật
 
-- **Đăng ký tài khoản**: Hỗ trợ đăng ký người dùng mới.
 - **Xác thực OTP qua Email**: Tự động gửi mã OTP 6 số để kích hoạt tài khoản.
 - **Đăng nhập (Login)**: Đăng nhập sinh token bằng **JWT (JSON Web Token)** kết hợp điều hướng dựa trên role (User/Admin).
 - **Quên mật khẩu & Đặt lại mật khẩu**: Quy trình cấp lại mật khẩu tự động qua mã OTP gửi bằng **Nodemailer**.
-- **Chỉnh sửa hồ sơ cá nhân**: Cập nhật thông tin với Whitelist để bảo vệ dữ liệu nhạy cảm.
 - **Bảo mật đa lớp**:
   - **Lớp 1 (Rate Limiting)**: Giới hạn số lần đăng ký, gửi lại OTP, đăng nhập, đổi mật khẩu để chống Brute-force & DDoS bằng `express-rate-limit`.
   - **Lớp 2 (Authentication & Authorization)**: Xác thực JWT token ở Header và phân quyền `user`, `admin` truy cập profile.
@@ -26,15 +22,9 @@ Dự án API backend cho hệ thống E-Learning, tập trung vào bảo mật A
 
 | Method | Endpoint | Description | Auth/Security |
 |--------|----------|-------------|---------------|
-| `POST` | `/api/auth/register` | Đăng ký người dùng | Rate Limit + Validation |
-| `POST` | `/api/auth/verify-otp` | Xác nhận mã OTP | - |
-| `POST` | `/api/auth/resend-otp` | Gửi lại mã OTP | Rate Limit |
 | `POST` | `/api/auth/login` | Đăng nhập tài khoản | Rate Limit + Validation |
 | `POST` | `/api/auth/forgot-password` | Quên mật khẩu | Rate Limit + Validation |
 | `POST` | `/api/auth/reset-password` | Đặt lại mật khẩu | Validation |
-| `GET`  | `/api/user/profile`  | Xem hồ sơ người dùng | JWT + Role: User |
-| `PUT`  | `/api/user/profile`  | Cập nhật hồ sơ cá nhân | Rate Limit + JWT + Role: User + Validation |
-| `GET`  | `/api/admin/profile` | Xem hồ sơ quản trị viên | JWT + Role: Admin |
 
 ## 🛠 Công nghệ sử dụng
 
